@@ -82,3 +82,95 @@ Authorization: {{loginReq.response.body.token}}
 }
 
 
+
+
+### Cadastrar console para testar o agendamento (ajuste idCliente)
+POST http://localhost:3000/console
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "modelo": "PlayStation 5",
+    "marca": "Sony",
+    "numeroSerie": "PS5-TESTE-001",
+    "tipo": "Manutencao",
+    "idCliente": 1
+}
+
+### Cadastrar agendamento (ajuste os codigos conforme o banco)
+POST http://localhost:3000/agendamento
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "data": "2026-11-10",
+    "hora": "14:00",
+    "tipoServico": "Limpeza",
+    "idCliente": 1,
+    "idConsole": 1
+}
+
+### Listar agendamentos sem ordenar
+GET http://localhost:3000/agendamentos
+Authorization: {{loginReq.response.body.token}}
+
+### Atualizar agendamento (ajuste o codigo na URL)
+PUT http://localhost:3000/agendamento/1
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "data": "2026-11-11",
+    "hora": "15:00",
+    "tipoServico": "Troca de pasta termica",
+    "idCliente": 1,
+    "idConsole": 1
+}
+
+### Campo obrigatorio ausente - esperado 400
+POST http://localhost:3000/agendamento
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "data": "2026-11-10",
+    "hora": "14:00",
+    "idCliente": 1,
+    "idConsole": 1
+}
+
+### Atualizacao sem campos obrigatorios - esperado 400
+PUT http://localhost:3000/agendamento/1
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{}
+
+### Agendamento inexistente - esperado 404 (use um codigo inexistente)
+PUT http://localhost:3000/agendamento/999999
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "data": "2026-11-11",
+    "hora": "15:00",
+    "tipoServico": "Limpeza",
+    "idCliente": 1,
+    "idConsole": 1
+}
+
+### Cliente ou console inexistente - esperado 500 (chave estrangeira)
+POST http://localhost:3000/agendamento
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "data": "2026-11-11",
+    "hora": "15:00",
+    "tipoServico": "Limpeza",
+    "idCliente": 999999,
+    "idConsole": 999999
+}
+
+### Sem token - esperado 401
+GET http://localhost:3000/agendamentos

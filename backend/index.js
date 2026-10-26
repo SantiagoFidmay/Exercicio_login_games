@@ -38,6 +38,8 @@ app.get('/clientes',clienteController.listarClientes)
 app.put('/cliente/:id',clienteController.atualizar)
 
 app.post('/agendamento',agendamentoController.cadastrarAgendamento)
+app.get('/agendamentos',agendamentoController.listarAgendamentos)
+app.put('/agendamento/:id',agendamentoController.atualizarAgendamento)
 
 app.post('/console',consoleController.cadastrarConsole)
 app.get('/console',consoleController.listarConsoles)

@@ -11,7 +11,7 @@ btn_listar.addEventListener('click', async (e) => {
     e.preventDefault()
 
     try {
-        const res = await fetch(`http://localhost:3000/consoles`, {
+        const res = await fetch(`http://localhost:3000/console`, {
             headers: {'Authorization': token}
         })
         const dados = await res.json()
@@ -37,7 +37,7 @@ btn_listar.addEventListener('click', async (e) => {
             <tbody>
                 ${dados.map(el => `
                 <tr>
-                    <td>${el.codCliente}</td>
+                    <td>${el.codigo_console}</td>
                     <td>${el.modelo}</td>
                     <td>${el.marca}</td>
                     <td>${el.numeroSerie}</td>

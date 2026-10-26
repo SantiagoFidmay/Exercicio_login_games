@@ -49,9 +49,11 @@ const consultarID = async(req,res)=>{
         }
 
         const bytes = cryptoJs.AES.decrypt(cliente.cpf, CHAVE_SECRETA)
-        cpfDescriptografados = bytes.toString(cryptoJs.enc.Utf8)
+        const cpfDescriptografados = bytes.toString(cryptoJs.enc.Utf8)
 
         return res.status(200).json({
+            codCliente: cliente.codCliente,
+            endereco: cliente.endereco,
             nome: cliente.nome,
             email: cliente.email,
             cpf: cpfDescriptografados,
@@ -83,8 +85,9 @@ const listarClientes = async (req, res) => {
                 nome: el.nome,
                 email: el.email,
                 senha: el.senha,
-                cpf: el.cpf,
-                endereco: el.endereco
+                cpf: cpfDescriptografados,
+                endereco: el.endereco,
+                celular: el.celular
                 
             })
         })
@@ -108,7 +111,7 @@ const apagar = async(req,res)=>{
         }
 
         await Cliente.destroy({where: {codCliente: id}})
-        return res.status(200).json({message: "Cliente não encontrado!"})
+        return res.status(200).json({message: "Dados apagados com sucesso!"})
 
     } catch (err){
         console.error("'Erro ao listar o cliente!",err)
@@ -147,6 +150,8 @@ const atualizar = async(req,res)=>{
             const cpfDescriptografados = bytes.toString(cryptoJs.enc.Utf8)
 
             return res.status(200).json({
+                codigo_cliente: dados.codCliente,
+                endereco: dados.endereco,
                 nome: dados.nome,
                 email: dados.email,
                 cpf: cpfDescriptografados,

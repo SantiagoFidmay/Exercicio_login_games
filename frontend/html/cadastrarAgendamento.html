@@ -10,9 +10,7 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="../index.html">Home</a>&emsp;
-        </nav>
+        <nav><a href="../index.html">Home</a>&emsp;</nav>
     </header>
     <main>
         <h1>Cadastrar Agendamento</h1><br>
@@ -23,17 +21,19 @@
             <label for="hora">Hora:</label><br>
             <input type="time" id="hora"><br><br>
 
+            <label for="tipoServico">Tipo de serviço:</label><br>
+            <input type="text" id="tipoServico"><br><br>
+
             <label for="idCliente">Código do cliente:</label><br>
-            <input type="number" id="idCliente" min="1" step="1"><br><br>
+            <input type="number" id="idCliente"><br><br>
 
-            <label for="idConsole">Código do Console:</label><br>
-            <input type="number" id="idDrone" min="1" step="1"><br><br>
+            <label for="idConsole">Código do console:</label><br>
+            <input type="number" id="idConsole"><br><br>
 
-           
+            <button id="btn_cadastrar">Cadastrar</button>
         </form>
         <br><br>
         <div id="resposta"></div>
     </main>
 </body>
 </html>
-

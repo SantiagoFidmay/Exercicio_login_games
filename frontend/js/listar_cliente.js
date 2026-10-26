@@ -38,7 +38,7 @@ btn_listar.addEventListener('click', async (e) => {
             <tbody>
                 ${dados.map(el => `
                 <tr>
-                    <td>${el.codCliente}</td>
+                    <td>${el.codigo_cliente}</td>
                     <td>${el.nome}</td>
                     <td>${el.email}</td>
                     <td>${el.cpf}</td>

@@ -6,7 +6,7 @@ const CHAVE_SECRETA = 'segredo'
 
 // ======= CONSOLE ======
 const cadastrarConsole = async (req, res) => {
-    const valores = req.body || {}
+    const valores = req.body
 
     if (!valores.modelo || !valores.marca || !valores.numeroSerie || !valores.tipo || !valores.idCliente) {
         return res.status(400).json({message: "Todos os campos são obrigatórios!"})
@@ -14,7 +14,7 @@ const cadastrarConsole = async (req, res) => {
 
     try {
         const numCripto = cryptoJs.AES.encrypt(
-            String(valores.numeroSerie),
+            valores.numeroSerie,
             CHAVE_SECRETA
         ).toString()
 
